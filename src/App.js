@@ -1,4 +1,5 @@
 import './App.css';
+import ListadoProductos from './Componentes/Productos/ListadoProductos';
 import Header from './Componentes/Interfaz/Header';
 import Footer from './Componentes/Interfaz/Footer';
 import { Button } from 'react-bootstrap';
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Header header />
-      <Button className='primary'>Hola</Button>
+      <ListadoProductos />
       <Footer footer={footer} />
     </div>
   );
