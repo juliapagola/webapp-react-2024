@@ -1,10 +1,10 @@
 import './App.css';
-import { Button } from 'react-bootstrap';
+import Producto from './Componentes/Productos/Producto';
 
 function App() {
   return (
     <div className="App">
-      <Button className='primary'>Hola</Button>
+      <Producto />
     </div>
   );
 }
