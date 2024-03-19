@@ -1,32 +1,29 @@
-import { Button, ButtonGroup, Image } from "react-bootstrap"
+import { Button, Card} from "react-bootstrap"
+import './Producto.css'
 
 
-function Producto() {
+function Producto(props) {
 
-    const nombre = "Producto 1"
-    const precio = "$100"
-    const imagen = "https://via.placeholder.com/50"
+    const nombre = props.producto.nombre
+    const precio = props.producto.precio
+    const imagen = props.producto.imagen
 
     
     return (
         <div className="producto">
-            <div className="detallesProducto">
-                <div className="imagenProducto">
-                    <Image src={imagen} thumbnail />
-                </div>
-                <div className="nombreProducto">
-                    {nombre}
-                </div>
-                <div className="precioProducto">
-                    {precio}
-                </div>
-            </div>
-            <div className="botonesProducto">
-                <ButtonGroup size="sm">
-                    <Button variant="secondary">-</Button>
-                    <Button variant="secondary">+</Button>
-                </ButtonGroup>
-            </div>
+            <Card size="sm" style={{ width: '200px'}} className="m-2">
+                <Card.Img className="imagenProducto p-2" variant="top" src={imagen} />
+                <Card.Body style={{ textAlign: 'center' }}>
+                    <Card.Title className="nombreProducto">{nombre}</Card.Title>
+                    <Card.Text className="precioProducto">
+                        {precio}€
+                    </Card.Text>
+                    <div className="botonesProducto">
+                        <Button variant="secondary">-</Button>
+                        <Button variant="secondary">+</Button>
+                    </div>
+                </Card.Body>
+            </Card>
         </div>
     )
 }
