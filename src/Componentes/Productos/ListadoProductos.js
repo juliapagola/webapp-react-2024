@@ -31,8 +31,6 @@ function ListadoProductos() {
   }, []);
 
 
-
-
   let contenido =
     <Container className="listadoProductos" fluid="md">
       <CardGroup className="justify-content-md-center" md={6}>
