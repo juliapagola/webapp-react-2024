@@ -1,5 +1,6 @@
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import logo from '../Imagenes/logo.png';
+import Despegable from './Despegable';
 
 function Header() {
     return (
@@ -27,6 +28,7 @@ function Header() {
                         <Button variant="outline-success">Buscar</Button>
                     </Form>
                 </Navbar.Collapse>
+                <Despegable />
             </Navbar>
         </>
     );
