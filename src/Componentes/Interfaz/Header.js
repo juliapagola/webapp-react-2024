@@ -6,6 +6,7 @@ function Header() {
     return (
         <>
             <Navbar bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
+                <Despegable />
                 <Navbar.Brand href="#home">
                     <img
                         src={logo}
@@ -28,7 +29,6 @@ function Header() {
                         <Button variant="outline-success">Buscar</Button>
                     </Form>
                 </Navbar.Collapse>
-                <Despegable />
             </Navbar>
         </>
     );
