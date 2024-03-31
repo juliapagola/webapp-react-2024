@@ -1,10 +1,12 @@
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import logo from '../Imagenes/logo.png';
+import Despegable from './Despegable';
 
 function Header() {
     return (
         <>
             <Navbar bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
+                <Despegable />
                 <Navbar.Brand href="#home">
                     <img
                         src={logo}
