@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Navbar, Offcanvas, Container, Button, Collapse, ButtonGroup } from 'react-bootstrap';
+import { Navbar, Offcanvas, Container, Button, Collapse } from 'react-bootstrap';
 
 function Desplegable() {
 

@@ -2,18 +2,25 @@ import './App.css';
 import ListadoProductos from './Componentes/Productos/ListadoProductos';
 import Header from './Componentes/Interfaz/Header';
 import Footer from './Componentes/Interfaz/Footer';
-//import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import Carrito from './Componentes/Productos/Carrito';
-
-const footer = 'Adiós Mundo';
+import Contact from './Paginas/Contact';
+import AboutUs from './Paginas/AboutUs';
+import Error from './Paginas/Error';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <ListadoProductos />
-      <Carrito />
-      <Footer />
+      <Routes>
+        <Route path='/' element={<ListadoProductos />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/carrito' element={<Carrito />} />
+        <Route path='/about-us' element={<AboutUs />} />
+
+        <Route path='*' element={<Error />} />
+      </Routes>
+      <Footer footer={footer} />
     </div>
   );
 }
