@@ -20,7 +20,7 @@ function App() {
 
         <Route path='*' element={<Error />} />
       </Routes>
-      <Footer footer={footer} />
+      <Footer />
     </div>
   );
 }
