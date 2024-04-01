@@ -1,12 +1,15 @@
 
 import { useState } from 'react';
 import { Navbar, Offcanvas, Container, Button, Collapse } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Desplegable() {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleClose = () => setShowMenu(false);
   const handleShow = () => setShowMenu(true);
@@ -15,7 +18,6 @@ function Desplegable() {
   const handleMouseEnter = (buttonName) => setHoveredButton(buttonName);
 
   const handleMouseLeave = () => setHoveredButton(null);
-
 
   return (
     <>
@@ -73,24 +75,27 @@ function Desplegable() {
               <ul style={{ listStyleType: "none" }}>
                 <li>
                   <Button variant="transparent"
-                    onMouseEnter={() => handleMouseEnter('Ropa Mujer')}
+                    onMouseEnter={() => handleMouseEnter('Moda Mujer')}
                     onMouseLeave={handleMouseLeave}
-                    style={{ backgroundColor: hoveredButton === 'Ropa Mujer' ? 'gray' : 'initial' }}>
-                    Ropa Mujer
+                    onClick={() => { navigate('/?categoria=modaMujer'); handleClose(); }}
+                    style={{ backgroundColor: hoveredButton === 'Moda Mujer' ? 'gray' : 'initial' }}>
+                    Moda Mujer
                   </Button>
                 </li>
                 <li>
                   <Button variant="transparent"
-                    onMouseEnter={() => handleMouseEnter('Ropa Hombre')}
+                    onMouseEnter={() => handleMouseEnter('Moda Hombre')}
                     onMouseLeave={handleMouseLeave}
-                    style={{ backgroundColor: hoveredButton === 'Ropa Hombre' ? 'gray' : 'initial' }}>
-                    Ropa Hombre
+                    onClick={() => { navigate('/?categoria=modaHombre'); handleClose(); }}
+                    style={{ backgroundColor: hoveredButton === 'Moda Hombre' ? 'gray' : 'initial' }}>
+                    Moda Hombre
                   </Button>
                 </li>
                 <li>
                   <Button variant="transparent"
                     onMouseEnter={() => handleMouseEnter('Calzado')}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => { navigate('/?categoria=calzado'); handleClose(); }}
                     style={{ backgroundColor: hoveredButton === 'Calzado' ? 'gray' : 'initial' }}>
                     Calzado
                   </Button>
@@ -99,6 +104,7 @@ function Desplegable() {
                   <Button variant="transparent"
                     onMouseEnter={() => handleMouseEnter('Accesorios')}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => { navigate('/?categoria=accesorios'); handleClose(); }}
                     style={{ backgroundColor: hoveredButton === 'Accesorios' ? 'gray' : 'initial' }}>
                     Accesorios
                   </Button>

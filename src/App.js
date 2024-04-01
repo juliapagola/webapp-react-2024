@@ -1,5 +1,6 @@
 import './App.css';
 import ListadoProductos from './Componentes/Productos/ListadoProductos';
+
 import Header from './Componentes/Interfaz/Header';
 import Footer from './Componentes/Interfaz/Footer';
 import { Route, Routes } from 'react-router-dom';
@@ -8,8 +9,6 @@ import Contact from './Paginas/Contact';
 import AboutUs from './Paginas/AboutUs';
 import Error from './Paginas/Error';
 import { useCallback, useEffect, useState } from 'react';
-
-const footer = 'Adiós Mundo';
 
 function App() {
 
@@ -85,16 +84,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header header />
-      <Routes>
-            <Route path = '/' element={<ListadoProductos accionCarrito={accionCarrito}/>}/>
-            <Route path = '/contact' element={<Contact />} />
-            <Route path= '/carrito' element={<Carrito accionCarrito={accionCarrito} carrito={carrito}/>} />
-            <Route path = '/about-us' element={<AboutUs />} />
-            
-            <Route path = '*' element={<Error />} />
-          </Routes>
-      <Footer footer={footer} />
+      <Header />
+        <Routes>
+          <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito}/>}/>
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} carrito={carrito}/>} />
+          <Route path='/about-us' element={<AboutUs />} />
+          
+          <Route path='*' element={<Error />} />
+        </Routes>
+      <Footer />
     </div>
   );
 }
