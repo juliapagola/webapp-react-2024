@@ -1,4 +1,4 @@
-import { Button, Card, Row, Col} from "react-bootstrap"
+import { Card, Row, Col} from "react-bootstrap"
 import './Producto.css'
 
 function ProductoCarrito(props) {
