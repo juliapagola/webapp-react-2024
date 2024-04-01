@@ -6,7 +6,7 @@ import FiltradoProductos from './FiltradoProductos';
 import OrdenarProductos from './OrdenarProductos';
 import axios from 'axios';
 
-function ListadoProductos() {
+function ListadoProductos(props) {
   const [productosFirebase, setProductosFirebase] = useState([]);
 
   const [categoria, setCategoria] = useState('');
