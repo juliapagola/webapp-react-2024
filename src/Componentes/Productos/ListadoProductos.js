@@ -29,11 +29,14 @@ function ListadoProductos() {
       .then((response) => {
         let arrayProductos = [];
         for (let key in response.data) {
+          const fechaFirebase = response.data[key].fecha;
+          const [dia, mes, anio] = fechaFirebase.split('/');
+          const fechaJavaScript = new Date(`${mes}/${dia}/${anio}`);
           arrayProductos.push({
             id: key,
             nombre: response.data[key].nombre,
             precio: response.data[key].precio,
-            fecha: new Date(response.data[key].fecha),
+            fecha: fechaJavaScript,
             descripcion: response.data[key].descripcion,
             categoria: response.data[key].categoria,
             imagen: response.data[key].imagen
