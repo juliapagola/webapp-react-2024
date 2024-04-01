@@ -9,14 +9,6 @@ function Producto(props) {
     const imagen = props.producto.imagen
 
 
-    const handlerCarrito = (event) => {
-        if (event.target.value === 'añadir') {
-            console.log('Añadir al carrito')
-        } else {
-            console.log('Quitar del carrito')
-        }
-    }
-
     return (
         <div className="producto">
             <Card size="sm" style={{ width: '200px' }} className="m-2">
@@ -33,8 +25,8 @@ function Producto(props) {
                         {precio}€
                     </Card.Text>
                     <div className="botonesProducto">
-                        <Button variant="secondary" onClick={handlerCarrito} value="quitar">-</Button>
-                        <Button variant="secondary" onClick={handlerCarrito} value="añadir">+</Button>
+                        <Button variant="secondary" onClick={() => props.accionCarrito('quitar', props.producto)}>-</Button>
+                        <Button variant="secondary" onClick={() => props.accionCarrito('añadir', props.producto)}>+</Button>
                     </div>
                 </Card.Body>
             </Card>

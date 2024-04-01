@@ -4,7 +4,7 @@ import Producto from "./Producto";
 import axios from 'axios';
 
 
-function ListadoProductos() {
+function ListadoProductos(props) {
 
   const [productosFirebase, setProductosFirebase] = useState([]);
 
@@ -36,7 +36,7 @@ function ListadoProductos() {
       <CardGroup className="justify-content-md-center" md={6}>
         {productosFirebase.map((elemento) => {
           return (
-            <Producto key={elemento.id} producto={elemento} />
+            <Producto key={elemento.id} producto={elemento} accionCarrito={props.accionCarrito}/>
           )
         })}
       </CardGroup>

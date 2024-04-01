@@ -1,5 +1,6 @@
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import logo from '../Imagenes/logo.png';
+import carrito from '../Imagenes/carrito.png';
 import Desplegable from './Desplegable';
 
 function Header() {
@@ -29,6 +30,15 @@ function Header() {
                         <Button variant="outline-success">Buscar</Button>
                     </Form>
                 </Navbar.Collapse>
+                <Navbar.Brand href="carrito">
+                    <img
+                        src={carrito}
+                        width="50"
+                        height="50"
+                        className="d-inline-block align-text"
+                        alt="Carrito de la compra"
+                    />
+                </Navbar.Brand>
             </Navbar>
         </>
     );
