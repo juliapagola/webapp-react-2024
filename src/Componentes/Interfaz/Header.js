@@ -7,7 +7,7 @@ function Header() {
         <>
             <Navbar bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
                 <Desplegable />
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                     <img
                         src={logo}
                         width="100"
@@ -15,7 +15,7 @@ function Header() {
                         className="d-inline-block align-text"
                         alt="Logo de la Tienda"
                     />
-                    Nombre Tienda
+                    Scader
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

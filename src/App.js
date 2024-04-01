@@ -10,10 +10,10 @@ const footer = 'Adiós Mundo';
 function App() {
   return (
     <div className="App">
-      <Header header />
+      <Header />
       <ListadoProductos />
       <Carrito />
-      <Footer footer={footer} />
+      <Footer />
     </div>
   );
 }
