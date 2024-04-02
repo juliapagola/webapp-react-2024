@@ -36,7 +36,10 @@ function App() {
       setCarrito((prevCarrito) => {
         return prevCarrito.map((elemento) => {
           if (elemento.id === producto.id) {
-            elemento.cantidad++;
+            return {
+              ...elemento,
+              cantidad: elemento.cantidad + 1
+            };
           }
           return elemento;
         })
@@ -52,7 +55,10 @@ function App() {
     setCarrito((prevCarrito) => {
       return prevCarrito.map((elemento) => {
         if (elemento.id === producto.id && elemento.cantidad > 0) {
-          elemento.cantidad--;
+          return {
+            ...elemento,
+            cantidad: elemento.cantidad - 1
+          };
         }
         return elemento;
       });
@@ -67,6 +73,10 @@ function App() {
     })
   },[]);
 
+  const vaciarCarrito = () =>{
+    setCarrito("");
+  }
+
   const accionCarrito = useCallback((accion, producto) => {
     if(!comprobarCarrito(producto)){
       producto.cantidad = 1;
@@ -74,11 +84,11 @@ function App() {
     if (accion === 'añadir') {
       añadirCarrito(producto);
     } 
-    else if (accion === 'quitar') {
-      quitarCarrito(producto);
-    }
-    else if (accion === 'eliminar') {
+    else if (accion === 'eliminar' || producto.cantidad <= 1) {
       eliminarCarrito(producto);
+    }
+    else if (comprobarCarrito(producto) && accion === 'quitar') {
+      quitarCarrito(producto);
     }
   }, [comprobarCarrito, añadirCarrito, quitarCarrito, eliminarCarrito]);
 
@@ -88,7 +98,7 @@ function App() {
         <Routes>
           <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito}/>}/>
           <Route path='/contact' element={<Contact />} />
-          <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} carrito={carrito}/>} />
+          <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito}/>} />
           <Route path='/about-us' element={<AboutUs />} />
           
           <Route path='*' element={<Error />} />
