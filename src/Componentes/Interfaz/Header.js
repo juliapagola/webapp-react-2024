@@ -6,7 +6,7 @@ import Desplegable from './Desplegable';
 function Header() {
     return (
         <>
-            <Navbar bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
+            <Navbar className='mb-4' bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
                 <Desplegable />
                 <Navbar.Brand href="/">
                     <img
