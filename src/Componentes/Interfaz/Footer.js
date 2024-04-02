@@ -3,7 +3,7 @@ import logo from '../Imagenes/logo.png';
 
 function Footer() {
     return (
-        <Navbar bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
+        <Navbar className='mt-4' bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
             <Navbar.Brand href="/">
                 <img
                     src={logo}

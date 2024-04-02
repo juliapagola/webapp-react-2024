@@ -1,6 +1,6 @@
 import './App.css';
 import ListadoProductos from './Componentes/Productos/ListadoProductos';
-
+import DetalleProducto from './Componentes/Productos/DetalleProducto';
 import Header from './Componentes/Interfaz/Header';
 import Footer from './Componentes/Interfaz/Footer';
 import { Route, Routes } from 'react-router-dom';
@@ -29,10 +29,10 @@ function App() {
       }
     })
     return encontrado;
-  },[carrito]);
+  }, [carrito]);
 
   const añadirCarrito = useCallback((producto) => {
-    if(comprobarCarrito(producto)) {
+    if (comprobarCarrito(producto)) {
       setCarrito((prevCarrito) => {
         return prevCarrito.map((elemento) => {
           if (elemento.id === producto.id) {
@@ -46,7 +46,7 @@ function App() {
         return [...prevCarrito, producto];
       })
     }
-  },[comprobarCarrito]);
+  }, [comprobarCarrito]);
 
   const quitarCarrito = useCallback((producto) => {
     setCarrito((prevCarrito) => {
@@ -57,7 +57,7 @@ function App() {
         return elemento;
       });
     });
-  },[]);
+  }, []);
 
   const eliminarCarrito = useCallback((producto) => {
     setCarrito((prevCarrito) => {
@@ -65,15 +65,15 @@ function App() {
         return elemento.id !== producto.id;
       })
     })
-  },[]);
+  }, []);
 
   const accionCarrito = useCallback((accion, producto) => {
-    if(!comprobarCarrito(producto)){
+    if (!comprobarCarrito(producto)) {
       producto.cantidad = 1;
     }
     if (accion === 'añadir') {
       añadirCarrito(producto);
-    } 
+    }
     else if (accion === 'quitar') {
       quitarCarrito(producto);
     }
@@ -85,14 +85,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-        <Routes>
-          <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito}/>}/>
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} carrito={carrito}/>} />
-          <Route path='/about-us' element={<AboutUs />} />
-          
-          <Route path='*' element={<Error />} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} carrito={carrito} />} />
+        <Route path='/about-us' element={<AboutUs />} />
+        <Route path='/detalle-producto' element={<DetalleProducto />} />
+        <Route path='*' element={<Error />} />
+      </Routes>
       <Footer />
     </div>
   );
