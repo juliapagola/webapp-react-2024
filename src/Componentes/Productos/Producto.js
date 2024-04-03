@@ -8,7 +8,8 @@ function Producto(props) {
   const nombre = props.producto.nombre;
   const precio = props.producto.precio;
   const imagen = props.producto.imagen;
-
+  //   let [redireccion, setRedireccion] = useState(true);
+  let redireccion = true;
   const navigate = useNavigate();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -22,6 +23,7 @@ function Producto(props) {
   };
 
   const handleClick = (event) => {
+    redireccion=false;  
     props.accionCarrito(event.target.value, props.producto);
     props.setShowMenuCarrito(true);
   };
@@ -35,8 +37,7 @@ function Producto(props) {
         style={{ width: "200px", borderColor: isHovered ? "#87b55b" : "" }}
         className="m-2"
         onClick={() => {
-          navigate(`detalle-producto?key=${key}`);
-        }}
+            if (redireccion) navigate(`detalle-producto?key=${key}`)}}
         role="button"
       >
         <div className="card-content">

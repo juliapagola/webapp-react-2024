@@ -8,7 +8,7 @@ import Carrito from './Componentes/Productos/Carrito';
 import Contact from './Paginas/Contact';
 import AboutUs from './Paginas/AboutUs';
 import Error from './Paginas/Error';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -21,17 +21,18 @@ function App() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
-  const comprobarCarrito = useCallback((producto) => {
+  const comprobarCarrito = (producto) => {
     let encontrado = false;
     carrito.forEach(elemento => {
       if (elemento.id === producto.id) {
+        producto.cantidad = elemento.cantidad;
         encontrado = true;
       }
     })
     return encontrado;
-  }, [carrito]);
+  };
 
-  const añadirCarrito = useCallback((producto) => {
+  const añadirCarrito = (producto) => {
     if (comprobarCarrito(producto)) {
       setCarrito((prevCarrito) => {
         return prevCarrito.map((elemento) => {
@@ -49,9 +50,9 @@ function App() {
         return [...prevCarrito, producto];
       })
     }
-  }, [comprobarCarrito]);
+  };
 
-  const quitarCarrito = useCallback((producto) => {
+  const quitarCarrito = (producto) => {
     setCarrito((prevCarrito) => {
       return prevCarrito.map((elemento) => {
         if (elemento.id === producto.id && elemento.cantidad > 0) {
@@ -63,34 +64,35 @@ function App() {
         return elemento;
       });
     });
-  }, []);
+  };
 
-  const eliminarCarrito = useCallback((producto) => {
+  const eliminarCarrito = (producto) => {
     setCarrito((prevCarrito) => {
       return prevCarrito.filter((elemento) => {
         return elemento.id !== producto.id;
       })
     })
-  }, []);
+  };
 
   const vaciarCarrito = () =>{
     setCarrito([]);
   }
 
-  const accionCarrito = useCallback((accion, producto) => {
+  const accionCarrito = (accion, producto) => {
     if (!comprobarCarrito(producto)) {
       producto.cantidad = 1;
     }
+    console.log(producto.cantidad);
     if (accion === 'añadir') {
       añadirCarrito(producto);
     } 
-    else if (accion === 'eliminar' || producto.cantidad <= 1) {
+    else if (accion === 'eliminar' || producto.cantidad <=1) {
       eliminarCarrito(producto);
     }
     else if (comprobarCarrito(producto) && accion === 'quitar') {
       quitarCarrito(producto);
     }
-  }, [comprobarCarrito, añadirCarrito, quitarCarrito, eliminarCarrito]);
+  };
 
   
   const [showMenuCarrito, setShowMenuCarrito] = useState(false);  
