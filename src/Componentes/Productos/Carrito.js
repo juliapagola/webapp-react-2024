@@ -4,6 +4,20 @@ import ProductoCarrito from "./ProductoCarrito";
 import ResumenCarrito from "./ResumenCarrito";
 
 function Carrito(props) {
+  const carrito = props.carrito;
+
+  if (carrito.length === 0) {
+    return (
+      <Container className="my-3" fluid="md">
+        <Row className="justify-content-center">
+          <Col md={7}>
+            <h3 className="text-center">El carrito está vacío</h3>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
   return (
     <Container className="my-3" fluid="md">
       <Row className="justify-content-between">
@@ -12,7 +26,7 @@ function Carrito(props) {
           className="px-3 m-1"
           style={{ border: "1px solid lightgrey", borderRadius: "8px" }}
         >
-          {props.carrito.map((producto) => (
+          {carrito.map((producto) => (
             <ProductoCarrito
               key={producto.id}
               producto={producto}

@@ -74,7 +74,7 @@ function App() {
   }, []);
 
   const vaciarCarrito = () =>{
-    setCarrito("");
+    setCarrito([]);
   }
 
   const accionCarrito = useCallback((accion, producto) => {
