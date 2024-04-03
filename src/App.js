@@ -5,11 +5,10 @@ import Header from './Componentes/Interfaz/Header';
 import Footer from './Componentes/Interfaz/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Carrito from './Componentes/Productos/Carrito';
-import Agradecimiento from './Paginas/Agradecimiento';
-import AboutUs from './Paginas/AboutUs';
 import Error from './Paginas/Error';
 import DireccionDeEntrega from './Componentes/Pedidos/DireccionDeEntrega';
 import { useEffect, useState } from 'react';
+import SobreNosotros from './Paginas/SobreNosotros';
 
 function App() {
   const [carrito, setCarrito] = useState(() => {
@@ -104,9 +103,8 @@ function App() {
 
       <Routes>
         <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito}/>} />
-        <Route path='/agradecimiento' element={<Agradecimiento />} />
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
-        <Route path='/sobre-nosotros' element={<AboutUs />} />
+        <Route path='/sobre-nosotros' element={<SobreNosotros />} />
         <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} />} />
         <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path='*' element={<Error />} />

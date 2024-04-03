@@ -48,7 +48,7 @@ const DetalleProducto = (props) => {
   };
 
   return (
-    <Container>
+    <Container style={{ height: '100vh' }}>
       <Row>
         <Col md={6}>
           <div className="imagen-container d-flex justify-content-center align-items-center">

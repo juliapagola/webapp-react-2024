@@ -15,9 +15,27 @@ function CarritoDesplegable(props) {
 
   const handleClose = () => props.setShowMenuCarrito(false);
   const navigate = useNavigate();
-  const handleClick = () =>{
+  const handleClick = () => {
     props.setShowMenuCarrito(false);
     navigate("carrito");
+  }
+
+  if (carrito.length === 0) {
+    return (
+      <Offcanvas
+        show={props.showMenuCarrito}
+        placement="end"
+        onHide={handleClose}
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Resumen del carrito</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <h5 className="m-3">El carrito está vacío</h5>
+          <Button variant='success' href="/">Volver a la página principal</Button>
+        </Offcanvas.Body>
+      </Offcanvas>
+    );
   }
 
   return (
@@ -36,8 +54,8 @@ function CarritoDesplegable(props) {
             producto={producto}
             accionCarrito={props.accionCarrito}
           />
-          ))}
-          <h5 className="m-3">Precio Total: {total}€</h5>
+        ))}
+        <h5 className="m-3">Precio Total: {total}€</h5>
         <Button className="m-3" variant="success" onClick={handleClick}>
           Ir al carrito
         </Button>
