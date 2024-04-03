@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navbar, Offcanvas, Container, Button, Collapse } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-function Desplegable() {
+function OpcionesDesplegable() {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
@@ -136,4 +136,4 @@ function Desplegable() {
   );
 }
 
-export default Desplegable;
+export default OpcionesDesplegable;

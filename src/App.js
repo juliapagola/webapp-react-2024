@@ -5,9 +5,10 @@ import Header from './Componentes/Interfaz/Header';
 import Footer from './Componentes/Interfaz/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Carrito from './Componentes/Productos/Carrito';
-import Contact from './Paginas/Contact';
+import Agradecimiento from './Paginas/Agradecimiento';
 import AboutUs from './Paginas/AboutUs';
 import Error from './Paginas/Error';
+import DireccionDeEntrega from './Componentes/Pedidos/DireccionDeEntrega';
 import { useCallback, useEffect, useState } from 'react';
 
 function App() {
@@ -73,7 +74,7 @@ function App() {
     })
   }, []);
 
-  const vaciarCarrito = () =>{
+  const vaciarCarrito = () => {
     setCarrito("");
   }
 
@@ -83,7 +84,7 @@ function App() {
     }
     if (accion === 'añadir') {
       añadirCarrito(producto);
-    } 
+    }
     else if (accion === 'eliminar' || producto.cantidad <= 1) {
       eliminarCarrito(producto);
     }
@@ -98,9 +99,10 @@ function App() {
 
       <Routes>
         <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/agradecimiento' element={<Agradecimiento />} />
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
-        <Route path='/about-us' element={<AboutUs />} />
+        <Route path='/sobre-nosotros' element={<AboutUs />} />
+        <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} />} />
         <Route path='/detalle-producto' element={<DetalleProducto />} />
         <Route path='*' element={<Error />} />
       </Routes>

@@ -6,6 +6,7 @@ import ResumenCarrito from "./ResumenCarrito";
 function Carrito(props) {
   return (
     <Container className="my-3" fluid="md">
+      <h2>Carrito</h2>
       <Row className="justify-content-between">
         <Col
           md={7}

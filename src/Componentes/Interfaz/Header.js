@@ -1,13 +1,13 @@
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import logo from '../Imagenes/logo.png';
 import carrito from '../Imagenes/carrito.png';
-import Desplegable from './Desplegable';
+import OpcionesDesplegable from './OpcionesDesplegable';
 
 function Header() {
     return (
         <>
             <Navbar className='mb-4' bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
-                <Desplegable />
+                <OpcionesDesplegable />
                 <Navbar.Brand href="/">
                     <img
                         src={logo}
