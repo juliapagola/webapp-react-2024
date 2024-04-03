@@ -107,7 +107,7 @@ function App() {
         <Route path='/agradecimiento' element={<Agradecimiento />} />
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
         <Route path='/sobre-nosotros' element={<AboutUs />} />
-        <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} />} />
+        <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} />} />
         <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path='*' element={<Error />} />
       </Routes>

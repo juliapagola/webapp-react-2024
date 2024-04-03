@@ -31,7 +31,7 @@ function ResumenCarrito(props) {
         <Button
           variant="success"
           onClick={() => {
-            navigate("/"); //Aqui iria la redireccion a la pagina de confirmacion de pedido
+            navigate("/direccion-de-entrega");
           }}
         >
           Confirmar Pedido
