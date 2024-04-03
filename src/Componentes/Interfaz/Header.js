@@ -2,8 +2,9 @@ import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import logo from '../Imagenes/logo.png';
 import carrito from '../Imagenes/carrito.png';
 import Desplegable from './Desplegable';
+import CarritoDesplegable from '../Productos/CarritoDesplegable';
 
-function Header() {
+function Header(props) {
     return (
         <>
             <Navbar className='mb-4' bg="custom" expand="lg" style={{ backgroundColor: '#D8EAC7' }}>
@@ -30,7 +31,7 @@ function Header() {
                         <Button variant="outline-success">Buscar</Button>
                     </Form>
                 </Navbar.Collapse>
-                <Navbar.Brand href="carrito">
+                <Navbar.Brand onClick={() => props.setShowMenuCarrito(true)}>
                     <img
                         src={carrito}
                         width="50"
@@ -40,6 +41,7 @@ function Header() {
                     />
                 </Navbar.Brand>
             </Navbar>
+            <CarritoDesplegable showMenuCarrito={props.showMenuCarrito} setShowMenuCarrito={props.setShowMenuCarrito} carrito={props.carrito}/>
         </>
     );
 }

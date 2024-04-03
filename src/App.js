@@ -92,16 +92,19 @@ function App() {
     }
   }, [comprobarCarrito, añadirCarrito, quitarCarrito, eliminarCarrito]);
 
+  
+  const [showMenuCarrito, setShowMenuCarrito] = useState(false);  
+
   return (
     <div className="App">
-      <Header />
+      <Header showMenuCarrito={showMenuCarrito} setShowMenuCarrito={setShowMenuCarrito} carrito={carrito}/>
 
       <Routes>
-        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} />} />
+        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
         <Route path='/about-us' element={<AboutUs />} />
-        <Route path='/detalle-producto' element={<DetalleProducto />} />
+        <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito}/>} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer />

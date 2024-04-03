@@ -46,7 +46,6 @@ function ProductoCarrito(props) {
         <Col md={9}>
           <Card.Body
             className="justify-content-center align-items-center"
-            visibi
             style={{ textAlign: "center" }}
           >
             <Row>

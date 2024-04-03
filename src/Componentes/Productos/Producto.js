@@ -21,6 +21,11 @@ function Producto(props) {
     setIsHovered(false);
   };
 
+  const handleClick = (event) => {
+    props.accionCarrito(event.target.value, props.producto);
+    props.setShowMenuCarrito(true);
+  };
+
   return (
     <div className="producto">
       <Card
@@ -50,16 +55,10 @@ function Producto(props) {
           </Card.Title>
           <Card.Text className="precioProducto">{precio}€</Card.Text>
           <div className="botonesProducto">
-            <Button
-              variant="secondary"
-              onClick={() => props.accionCarrito("quitar", props.producto)}
-            >
+            <Button variant="secondary" onClick={handleClick} value="quitar">
               -
             </Button>
-            <Button
-              variant="secondary"
-              onClick={() => props.accionCarrito("añadir", props.producto)}
-            >
+            <Button variant="secondary" onClick={handleClick} value="añadir">
               +
             </Button>
           </div>

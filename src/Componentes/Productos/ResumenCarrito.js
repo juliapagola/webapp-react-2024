@@ -7,9 +7,9 @@ function ResumenCarrito(props) {
   const carrito = props.carrito;
   let total = 0;
 
-  carrito.forEach((element) => {
-    const precio = element.precio;
-    const cantidad = element.cantidad;
+  carrito.forEach((producto) => {
+    const precio = producto.precio;
+    const cantidad = producto.cantidad;
     const totalProducto = precio * cantidad;
     total = total + totalProducto;
   });
