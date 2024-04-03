@@ -32,8 +32,7 @@ function ResumenCarrito(props) {
           variant="success"
           onClick={() => {
             navigate("/"); //Aqui iria la redireccion a la pagina de confirmacion de pedido
-          }}
-        >
+          }}>
           Confirmar Pedido
         </Button>
       );
@@ -57,8 +56,7 @@ function ResumenCarrito(props) {
         border: "1px solid lightgrey",
         borderRadius: "8px",
         textAlign: "center",
-      }}
-    >
+      }}>
       <h3>Resumen de la compra</h3>
       {carrito.map((producto) => (
         <ProductoCarritoSimple
@@ -68,23 +66,22 @@ function ResumenCarrito(props) {
         />
       ))}
       <h4>Precio Total: {total}€</h4>
-
-      <Button
-        variant="success"
-        onClick={handleContenidoModal}
-        value={"continuar"}
-        style={{ margin: "7px" }}
-      >
-        Confirmar Pedido
-      </Button>
-      <Button
-        variant="danger"
-        onClick={handleContenidoModal}
-        value={"cancelar"}
-        style={{ margin: "7px" }}
-      >
-        Vaciar Carrito
-      </Button>
+      <div style={{display: props.mostrarBotones}}>
+        <Button
+          variant="success"
+          onClick={handleContenidoModal}
+          value={"continuar"}
+          style={{ margin: "7px" }}>
+          Confirmar Pedido
+        </Button>
+        <Button
+          variant="danger"
+          onClick={handleContenidoModal}
+          value={"cancelar"}
+          style={{ margin: "7px" }}>
+          Vaciar Carrito
+        </Button>
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

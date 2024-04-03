@@ -134,6 +134,7 @@ function DireccionDeEntrega(props) {
                     <ResumenCarrito
                         carrito={props.carrito}
                         vaciarCarrito={props.vaciarCarrito}
+                        mostrarBotones={"none"}
                     />
                 </Col>
             </Row>

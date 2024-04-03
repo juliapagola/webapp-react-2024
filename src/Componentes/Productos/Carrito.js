@@ -41,6 +41,7 @@ function Carrito(props) {
           <ResumenCarrito
             carrito={props.carrito}
             vaciarCarrito={props.vaciarCarrito}
+            mostrarBotones={"block"}
           />
         </Col>
       </Row>
