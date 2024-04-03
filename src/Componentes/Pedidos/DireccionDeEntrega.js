@@ -66,7 +66,7 @@ function DireccionDeEntrega(props) {
         }
     };
     if (submitted) {
-        //props.vaciarCarrito();
+        props.vaciarCarrito();
         navigate('/agradecimiento');
     }
 
