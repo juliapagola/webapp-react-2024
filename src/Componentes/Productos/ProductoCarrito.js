@@ -8,15 +8,14 @@ function ProductoCarrito(props) {
   const precio = props.producto.precio;
   const imagen = props.producto.imagen;
   const cantidad = props.producto.cantidad;
-  const precioTotal = precio * cantidad;
-  const [oculto, setOculto] = useState((cantidad === 1) ? "none" : "block");
-  const [inactivo, setInactivo] = useState((cantidad === 1));
+  const precioTotal = parseFloat((cantidad * precio).toFixed(2));
+  const [oculto, setOculto] = useState(cantidad === 1 ? "none" : "block");
+  const [inactivo, setInactivo] = useState(cantidad === 1);
 
   const precioUnidad = (
     <Card.Text
       className="precioProducto"
-      style={{ color: "gray", display: oculto }}
-    >
+      style={{ color: "gray", display: oculto }}>
       Precio por unidad {precio}€
     </Card.Text>
   );
@@ -46,8 +45,7 @@ function ProductoCarrito(props) {
         <Col md={9}>
           <Card.Body
             className="justify-content-center align-items-center"
-            style={{ textAlign: "center" }}
-          >
+            style={{ textAlign: "center" }}>
             <Row>
               <Col md={5}>
                 <Card.Title className="nombreProducto">{nombre}</Card.Title>
@@ -60,8 +58,7 @@ function ProductoCarrito(props) {
                     variant="secondary"
                     disabled={inactivo}
                     onClick={carritoHandler}
-                    value={"quitar"}
-                  >
+                    value={"quitar"}>
                     -
                   </Button>
                   <span style={{ padding: "5px" }}>
@@ -70,16 +67,14 @@ function ProductoCarrito(props) {
                   <Button
                     variant="secondary"
                     onClick={carritoHandler}
-                    value={"añadir"}
-                  >
+                    value={"añadir"}>
                     +
                   </Button>
                   <Button
                     variant="transparent"
                     onClick={() =>
                       props.accionCarrito("eliminar", props.producto)
-                    }
-                  >
+                    }>
                     <img
                       src={basura}
                       width="25px"

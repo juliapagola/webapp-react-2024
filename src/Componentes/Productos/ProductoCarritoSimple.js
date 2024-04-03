@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 function ProductoCarritoSimple(props) {
   const nombre = props.producto.nombre;
   const cantidad = props.producto.cantidad;
-  const precio = cantidad * props.producto.precio;
+  const precio = parseFloat((cantidad * props.producto.precio).toFixed(2));
 
   return (
     <Container className="p-3" style={{ textAlign: "left" }}>

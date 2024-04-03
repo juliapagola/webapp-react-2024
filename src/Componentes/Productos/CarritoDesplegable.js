@@ -9,7 +9,7 @@ function CarritoDesplegable(props) {
   carrito.forEach((producto) => {
     const precio = producto.precio;
     const cantidad = producto.cantidad;
-    const totalProducto = precio * cantidad;
+    const totalProducto = parseFloat((cantidad * precio).toFixed(2));
     total = total + totalProducto;
   });
 

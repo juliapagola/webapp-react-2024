@@ -8,7 +8,7 @@ function Producto(props) {
   const nombre = props.producto.nombre;
   const precio = props.producto.precio;
   const imagen = props.producto.imagen;
-  //   let [redireccion, setRedireccion] = useState(true);
+  let inactivo = !props.comprobarCarrito(props.producto);
   let redireccion = true;
   const navigate = useNavigate();
 
@@ -23,9 +23,10 @@ function Producto(props) {
   };
 
   const handleClick = (event) => {
-    redireccion=false;  
+    redireccion = false;
     props.accionCarrito(event.target.value, props.producto);
     props.setShowMenuCarrito(true);
+    inactivo = !props.comprobarCarrito(props.producto);
   };
 
   return (
@@ -37,9 +38,9 @@ function Producto(props) {
         style={{ width: "200px", borderColor: isHovered ? "#87b55b" : "" }}
         className="m-2"
         onClick={() => {
-            if (redireccion) navigate(`detalle-producto?key=${key}`)}}
-        role="button"
-      >
+          if (redireccion) navigate(`detalle-producto?key=${key}`);
+        }}
+        role="button">
         <div className="card-content">
           <Card.Img className="imagenProducto p-2" variant="top" src={imagen} />
         </div>
@@ -50,13 +51,16 @@ function Producto(props) {
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
-            }}
-          >
+            }}>
             {nombre}
           </Card.Title>
           <Card.Text className="precioProducto">{precio}€</Card.Text>
           <div className="botonesProducto">
-            <Button variant="secondary" onClick={handleClick} value="quitar">
+            <Button
+              variant="secondary"
+              disabled={inactivo}
+              onClick={handleClick}
+              value="quitar">
               -
             </Button>
             <Button variant="secondary" onClick={handleClick} value="añadir">
