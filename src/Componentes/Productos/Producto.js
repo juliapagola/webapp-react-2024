@@ -1,50 +1,72 @@
-import { Button, Card } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import './Producto.css'
+import { useNavigate } from "react-router-dom";
+import "./Producto.css";
 
 function Producto(props) {
+  const key = props.producto.id;
+  const nombre = props.producto.nombre;
+  const precio = props.producto.precio;
+  const imagen = props.producto.imagen;
+  //   let [redireccion, setRedireccion] = useState(true);
+  let redireccion = true;
+  const navigate = useNavigate();
 
-    const key = props.producto.id
-    const nombre = props.producto.nombre
-    const precio = props.producto.precio
-    const imagen = props.producto.imagen
+  const [isHovered, setIsHovered] = useState(false);
 
-    const navigate = useNavigate();
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
 
-    const [isHovered, setIsHovered] = useState(false);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
+  const handleClick = (event) => {
+    redireccion=false;  
+    props.accionCarrito(event.target.value, props.producto);
+    props.setShowMenuCarrito(true);
+  };
 
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
-    return (
-        <div className="producto">
-            <Card size="sm" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ width: '200px', borderColor: isHovered ? '#87b55b' : '' }} className="m-2" onClick={() => { navigate(`detalle-producto?key=${key}`) }} role="button"  >
-                <div className="card-content">
-                    <Card.Img
-                        className="imagenProducto p-2"
-                        variant="top"
-                        src={imagen}
-                    />
-                </div>
-                <Card.Body style={{ textAlign: 'center' }}>
-                    <Card.Title className="nombreProducto" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{nombre}</Card.Title>
-                    <Card.Text className="precioProducto">
-                        {precio}€
-                    </Card.Text>
-                    <div className="botonesProducto">
-                        <Button variant="secondary" onClick={() => props.accionCarrito('quitar', props.producto)}>-</Button>
-                        <Button variant="secondary" onClick={() => props.accionCarrito('añadir', props.producto)}>+</Button>
-                    </div>
-                </Card.Body>
-            </Card>
+  return (
+    <div className="producto">
+      <Card
+        size="sm"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ width: "200px", borderColor: isHovered ? "#87b55b" : "" }}
+        className="m-2"
+        onClick={() => {
+            if (redireccion) navigate(`detalle-producto?key=${key}`)}}
+        role="button"
+      >
+        <div className="card-content">
+          <Card.Img className="imagenProducto p-2" variant="top" src={imagen} />
         </div>
-    )
+        <Card.Body style={{ textAlign: "center" }}>
+          <Card.Title
+            className="nombreProducto"
+            style={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {nombre}
+          </Card.Title>
+          <Card.Text className="precioProducto">{precio}€</Card.Text>
+          <div className="botonesProducto">
+            <Button variant="secondary" onClick={handleClick} value="quitar">
+              -
+            </Button>
+            <Button variant="secondary" onClick={handleClick} value="añadir">
+              +
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
+  );
 }
 
-export default Producto
+export default Producto;

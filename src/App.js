@@ -9,101 +9,106 @@ import Agradecimiento from './Paginas/Agradecimiento';
 import AboutUs from './Paginas/AboutUs';
 import Error from './Paginas/Error';
 import DireccionDeEntrega from './Componentes/Pedidos/DireccionDeEntrega';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-
   const [carrito, setCarrito] = useState(() => {
-    const carritoGuardado = localStorage.getItem('carrito');
+    const carritoGuardado = localStorage.getItem("carrito");
     return carritoGuardado ? JSON.parse(carritoGuardado) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify(carrito));
   }, [carrito]);
 
-  const comprobarCarrito = useCallback((producto) => {
+  const comprobarCarrito = (producto) => {
     let encontrado = false;
-    carrito.forEach(elemento => {
+    carrito.forEach((elemento) => {
       if (elemento.id === producto.id) {
+        producto.cantidad = elemento.cantidad;
         encontrado = true;
       }
-    })
+    });
     return encontrado;
-  }, [carrito]);
+  };
 
-  const añadirCarrito = useCallback((producto) => {
+  const añadirCarrito = (producto) => {
     if (comprobarCarrito(producto)) {
       setCarrito((prevCarrito) => {
         return prevCarrito.map((elemento) => {
           if (elemento.id === producto.id) {
             return {
               ...elemento,
-              cantidad: elemento.cantidad + 1
+              cantidad: elemento.cantidad + 1,
             };
           }
           return elemento;
-        })
-      })
+        });
+      });
     } else {
       setCarrito((prevCarrito) => {
         return [...prevCarrito, producto];
-      })
+      });
     }
-  }, [comprobarCarrito]);
+  };
 
-  const quitarCarrito = useCallback((producto) => {
+  const quitarCarrito = (producto) => {
     setCarrito((prevCarrito) => {
       return prevCarrito.map((elemento) => {
         if (elemento.id === producto.id && elemento.cantidad > 0) {
           return {
             ...elemento,
-            cantidad: elemento.cantidad - 1
+            cantidad: elemento.cantidad - 1,
           };
         }
         return elemento;
       });
     });
-  }, []);
+  };
 
-  const eliminarCarrito = useCallback((producto) => {
+  const eliminarCarrito = (producto) => {
     setCarrito((prevCarrito) => {
       return prevCarrito.filter((elemento) => {
         return elemento.id !== producto.id;
-      })
-    })
-  }, []);
+      });
+    });
+  };
 
   const vaciarCarrito = () => {
-    setCarrito("");
-  }
+    setCarrito([]);
+  };
 
-  const accionCarrito = useCallback((accion, producto) => {
+  const accionCarrito = (accion, producto) => {
     if (!comprobarCarrito(producto)) {
       producto.cantidad = 1;
     }
-    if (accion === 'añadir') {
+    if (accion === "añadir") {
       añadirCarrito(producto);
     }
     else if (accion === 'eliminar' || producto.cantidad <= 1) {
       eliminarCarrito(producto);
-    }
-    else if (comprobarCarrito(producto) && accion === 'quitar') {
+    } else if (comprobarCarrito(producto) && accion === "quitar") {
       quitarCarrito(producto);
     }
-  }, [comprobarCarrito, añadirCarrito, quitarCarrito, eliminarCarrito]);
+  };
+
+  const [showMenuCarrito, setShowMenuCarrito] = useState(false);
 
   return (
     <div className="App">
-      <Header />
+      <Header
+        showMenuCarrito={showMenuCarrito}
+        setShowMenuCarrito={setShowMenuCarrito}
+        carrito={carrito}
+      />
 
       <Routes>
-        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} />} />
+        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path='/agradecimiento' element={<Agradecimiento />} />
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
         <Route path='/sobre-nosotros' element={<AboutUs />} />
         <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} />} />
-        <Route path='/detalle-producto' element={<DetalleProducto />} />
+        <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer />
