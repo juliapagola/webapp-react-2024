@@ -95,6 +95,7 @@ function DireccionDeEntrega(props) {
   }
 
   const titulo = bloqueado ? "Detalles del pedido" : "Dirección de entrega";
+  const observacionesTexto = bloqueado ? "Observaciones para la agencia..." : "Escribe aquí tus observaciones para la agencia..." ;
   const mostrarBoton = (bloqueado) =>{
     if (bloqueado){
       return "block";
@@ -193,7 +194,7 @@ function DireccionDeEntrega(props) {
                 </Form.Group>
                 <Form.Group controlId="observaciones">
                   <Form.Label>
-                    Escribe aquí tus observaciones para la agencia...
+                    {observacionesTexto}
                   </Form.Label>
                   <Form.Control
                     disabled={bloqueado}
