@@ -63,7 +63,7 @@ const Login = () => {
                                     </Button>
                                 </div>
                             </Form.Group>
-
+                            <div className='justify-content-center mb-3 d-flex'><p style={{ marginRight: '10px' }}>¿No estás registrado?</p><a href='/registrarse'> Registrarse</a></div>
                             {error && <Alert className='mb-3' variant="danger">{error}</Alert>}
                             <div className="text-center">
                                 <Button variant="success" type="submit" disabled={sending}>

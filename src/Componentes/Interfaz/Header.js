@@ -3,18 +3,21 @@ import logo from "../Imagenes/logo.png";
 import carrito from "../Imagenes/carrito.png";
 import OpcionesDesplegable from "./OpcionesDesplegable";
 import CarritoDesplegable from "../Productos/CarritoDesplegable";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AutContext from "../../Paginas/AutContext";
 
 function Header(props) {
-    const [isHovered, setIsHovered] = useState(false);
+  const contextAut = useContext(AutContext);
 
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   return (
     <>
       <Navbar
@@ -46,7 +49,7 @@ function Header(props) {
           </Form>
         </Navbar.Collapse>
         <Navbar.Brand
-        className="p-2"
+          className="p-2"
           onClick={() => props.setShowMenuCarrito(true)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

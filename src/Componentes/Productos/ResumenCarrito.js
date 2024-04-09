@@ -1,9 +1,11 @@
 import { Button, Container, Modal } from "react-bootstrap";
 import ProductoCarritoSimple from "./ProductoCarritoSimple";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
+import AutContext from "../../Paginas/AutContext";
 
 function ResumenCarrito(props) {
+  const contextAut = useContext(AutContext);
   const carrito = props.carrito;
   let total = 0;
 
@@ -31,7 +33,8 @@ function ResumenCarrito(props) {
         <Button
           variant="success"
           onClick={() => {
-            navigate("/direccion-de-entrega");
+            { contextAut.login && navigate("/direccion-de-entrega") }
+            { !contextAut.login && navigate("/login") }
           }}
         >
           Confirmar Pedido
@@ -66,7 +69,7 @@ function ResumenCarrito(props) {
         />
       ))}
       <h4>Precio Total: {total}€</h4>
-      <div style={{display: props.mostrarBotones}}>
+      <div style={{ display: props.mostrarBotones }}>
         <Button
           variant="success"
           onClick={handleContenidoModal}

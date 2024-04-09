@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DireccionDeEntrega from "./DireccionDeEntrega";
 
-function DetallePedido(props) {
+function DetallePedido() {
   const location = useLocation();
   const pedido = location.state.pedido || null;
   const navigate = useNavigate();

@@ -13,8 +13,12 @@ import ListadoPedidos from './Componentes/Pedidos/ListadoPedidos';
 import Registrarse from './Paginas/Registrarse';
 import Login from './Paginas/Login';
 import DetallePedido from './Componentes/Pedidos/DetallePedido';
+import AutContext from './Paginas/AutContext';
 
 function App() {
+  const [login, setLogin] = useState(false);
+  const [userID, setUserID] = useState('');
+
   const [carrito, setCarrito] = useState(() => {
     const carritoGuardado = localStorage.getItem("carrito");
     return carritoGuardado ? JSON.parse(carritoGuardado) : [];
@@ -99,25 +103,27 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        showMenuCarrito={showMenuCarrito}
-        setShowMenuCarrito={setShowMenuCarrito}
-        carrito={carrito}
-      />
+      <AutContext.Provider value={{ login: login, userID: userID }}>
+        <Header
+          showMenuCarrito={showMenuCarrito}
+          setShowMenuCarrito={setShowMenuCarrito}
+          carrito={carrito}
+        />
 
-      <Routes>
-        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito} />} />
-        <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
-        <Route path='/sobre-nosotros' element={<SobreNosotros />} />
-        <Route path='/registrarse' element={<Registrarse />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} detalle={false} />} />
-        <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
-        <Route path="/pedidos" element={<ListadoPedidos />} />
-        <Route path="/detalle-pedido" element={<DetallePedido />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
-      <Footer />
+        <Routes>
+          <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito} />} />
+          <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
+          <Route path='/sobre-nosotros' element={<SobreNosotros />} />
+          <Route path='/registrarse' element={<Registrarse />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} detalle={false} />} />
+          <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
+          <Route path="/pedidos" element={<ListadoPedidos />} />
+          <Route path="/detalle-pedido" element={<DetallePedido />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+        <Footer />
+      </AutContext.Provider>
     </div>
   );
 }
