@@ -10,8 +10,8 @@ function ResumenCarrito(props) {
   carrito.forEach((producto) => {
     const precio = producto.precio;
     const cantidad = producto.cantidad;
-    const totalProducto = parseFloat((cantidad * precio).toFixed(2))
-    total = total + totalProducto;
+    const totalProducto = parseFloat((cantidad * precio).toFixed(2));
+    total = parseFloat((total + totalProducto).toFixed(2));
   });
 
   const [show, setShow] = useState(false);

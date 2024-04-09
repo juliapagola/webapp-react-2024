@@ -15,11 +15,12 @@ function ListadoPedidos() {
         let arrayProductos = [];
         let identificador = 1;
         for (let key in response.data) {
-          if (response.data[key].cliente.userID === "props.userID") {
+          if (response.data[key].cliente.userID === "props.userID" ) {
             arrayProductos.push({
-              id: identificador,
+              id: key,
               cliente: response.data[key].cliente,
               carrito: response.data[key].carrito,
+              numeroPedido: identificador,
             });
             identificador= identificador+1;
           }

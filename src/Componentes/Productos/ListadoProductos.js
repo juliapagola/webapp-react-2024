@@ -71,7 +71,7 @@ function ListadoProductos(props) {
       <CardGroup className="justify-content-md-center" md={6}>
         {productosOrdenados.map((elemento) => {
           return (
-            <Producto producto={elemento} accionCarrito={props.accionCarrito} setShowMenuCarrito={props.setShowMenuCarrito} comprobarCarrito={props.comprobarCarrito}/>
+            <Producto key={elemento.id} producto={elemento} accionCarrito={props.accionCarrito} setShowMenuCarrito={props.setShowMenuCarrito} comprobarCarrito={props.comprobarCarrito}/>
           )
         })}
       </CardGroup>
