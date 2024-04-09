@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Alert, Row, Container, Col } from 'react-bootstrap';
 import eyeClosed from '../Componentes/Imagenes/ojo-tachado.png';
 import eyeOpen from '../Componentes/Imagenes/ojo-abierto.png';
 import axios from 'axios';
 import { MD5 } from 'crypto-js';
+import AutContext from './AutContext';
 
 const Login = () => {
+    const contextAut = useContext(AutContext);
     const [userID, setUserID] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -27,6 +29,8 @@ const Login = () => {
             const userData = response.data;
             if (userData && Object.keys(userData).length > 0) {
                 setSubmitted(true);
+                contextAut.setLogin(true);
+                contextAut.setUserID(userID);
             } else {
                 setError('Nombre de usuario o contraseña incorrectos.');
             }

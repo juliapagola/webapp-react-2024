@@ -33,8 +33,11 @@ function ResumenCarrito(props) {
         <Button
           variant="success"
           onClick={() => {
-            { contextAut.login && navigate("/direccion-de-entrega") }
-            { !contextAut.login && navigate("/login") }
+            if (contextAut.login) {
+              navigate("/direccion-de-entrega")
+            } else {
+              navigate("/login")
+            }
           }}
         >
           Confirmar Pedido

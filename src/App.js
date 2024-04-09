@@ -103,13 +103,12 @@ function App() {
 
   return (
     <div className="App">
-      <AutContext.Provider value={{ login: login, userID: userID }}>
+      <AutContext.Provider value={{ login, setLogin, userID, setUserID }}>
         <Header
           showMenuCarrito={showMenuCarrito}
           setShowMenuCarrito={setShowMenuCarrito}
           carrito={carrito}
         />
-
         <Routes>
           <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito} />} />
           <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
