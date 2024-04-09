@@ -52,7 +52,7 @@ function ResumenCarrito(props) {
 
   return (
     <Container
-      className="p-2"
+      className="p-2 my-2"
       style={{
         border: "1px solid lightgrey",
         borderRadius: "8px",
@@ -63,7 +63,6 @@ function ResumenCarrito(props) {
         <ProductoCarritoSimple
           key={producto.id}
           producto={producto}
-          accionCarrito={props.accionCarrito}
         />
       ))}
       <h4>Precio Total: {total}€</h4>
