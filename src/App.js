@@ -10,6 +10,7 @@ import DireccionDeEntrega from './Componentes/Pedidos/DireccionDeEntrega';
 import { useEffect, useState } from 'react';
 import SobreNosotros from './Paginas/SobreNosotros';
 import ListadoPedidos from './Componentes/Pedidos/ListadoPedidos';
+import Registrarse from './Paginas/Registrarse';
 import DetallePedido from './Componentes/Pedidos/DetallePedido';
 
 function App() {
@@ -104,9 +105,10 @@ function App() {
       />
 
       <Routes>
-        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito}/>} />
+        <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito} />} />
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
         <Route path='/sobre-nosotros' element={<SobreNosotros />} />
+        <Route path='/registrarse' element={<Registrarse />} />
         <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} detalle={false} />} />
         <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path="/pedidos" element={<ListadoPedidos />} />
