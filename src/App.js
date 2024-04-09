@@ -12,6 +12,7 @@ import SobreNosotros from './Paginas/SobreNosotros';
 import ListadoPedidos from './Componentes/Pedidos/ListadoPedidos';
 import Registrarse from './Paginas/Registrarse';
 import Login from './Paginas/Login';
+import DetallePedido from './Componentes/Pedidos/DetallePedido';
 
 function App() {
   const [carrito, setCarrito] = useState(() => {
@@ -110,9 +111,10 @@ function App() {
         <Route path='/sobre-nosotros' element={<SobreNosotros />} />
         <Route path='/registrarse' element={<Registrarse />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} />} />
+        <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} detalle={false} />} />
         <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path="/pedidos" element={<ListadoPedidos />} />
+        <Route path="/detalle-pedido" element={<DetallePedido />} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer />

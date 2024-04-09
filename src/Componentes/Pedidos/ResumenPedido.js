@@ -1,6 +1,7 @@
 import { Button, Container, Row, Col, Modal } from "react-bootstrap";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ResumenPedido(props) {
   console.log(props.pedido);
@@ -48,8 +49,9 @@ function ResumenPedido(props) {
     window.location.reload();
   };
 
+  const navigate = useNavigate();
   const handleDetalles = () => {
-    window.location.reload();
+    navigate("/detalle-pedido", { state: { pedido: props.pedido } });
   };
 
   return (
@@ -60,7 +62,7 @@ function ResumenPedido(props) {
         borderRadius: "8px",
         textAlign: "center",
       }}>
-      <h2>Pedido numero {props.pedido.numeroPedido}</h2>
+      <h2>Pedido número {props.pedido.numeroPedido}</h2>
 
       <Row className="justify-content-between m-3">
         <Col md={4}>
