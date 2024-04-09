@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function DireccionDeEntrega(props) {
   const navigate = useNavigate();
   useEffect(() => {
-    if (props.carrito.length === 0) {
+    if (props.carrito.length === 0 && !submitted) {
       navigate("/");
     }
     if (props.detalle) {
