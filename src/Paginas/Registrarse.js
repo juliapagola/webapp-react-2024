@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert, Row, Container, Col, Spinner } from 'react-bootstrap';
+import { Form, Button, Alert, Row, Container, Col } from 'react-bootstrap';
 import eyeClosed from '../Componentes/Imagenes/ojo-tachado.png';
 import eyeOpen from '../Componentes/Imagenes/ojo-abierto.png';
 import axios from 'axios';
+import { MD5 } from 'crypto-js';
 
 const Registrarse = () => {
     const [userID, setUserID] = useState('');
@@ -54,7 +55,7 @@ const Registrarse = () => {
         const usuario = {
             userID: userID,
             email: email,
-            password: password
+            password: MD5(password).toString()
         };
 
         try {

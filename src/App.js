@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import SobreNosotros from './Paginas/SobreNosotros';
 import ListadoPedidos from './Componentes/Pedidos/ListadoPedidos';
 import Registrarse from './Paginas/Registrarse';
+import Login from './Paginas/Login';
 
 function App() {
   const [carrito, setCarrito] = useState(() => {
@@ -108,6 +109,7 @@ function App() {
         <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
         <Route path='/sobre-nosotros' element={<SobreNosotros />} />
         <Route path='/registrarse' element={<Registrarse />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} />} />
         <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
         <Route path="/pedidos" element={<ListadoPedidos />} />
