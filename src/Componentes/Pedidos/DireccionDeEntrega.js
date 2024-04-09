@@ -42,7 +42,8 @@ function DireccionDeEntrega(props) {
                 provincia: provincia,
                 userID: 'props.userID'
             },
-            carrito: {}
+            carrito: {},
+            eliminado: false
         };
 
         carrito.forEach(item => {

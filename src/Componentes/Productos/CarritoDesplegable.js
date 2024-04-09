@@ -10,7 +10,7 @@ function CarritoDesplegable(props) {
     const precio = producto.precio;
     const cantidad = producto.cantidad;
     const totalProducto = parseFloat((cantidad * precio).toFixed(2));
-    total = total + totalProducto;
+    total = parseFloat((total + totalProducto).toFixed(2));
   });
 
   const handleClose = () => props.setShowMenuCarrito(false);

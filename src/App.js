@@ -9,6 +9,7 @@ import Error from './Paginas/Error';
 import DireccionDeEntrega from './Componentes/Pedidos/DireccionDeEntrega';
 import { useEffect, useState } from 'react';
 import SobreNosotros from './Paginas/SobreNosotros';
+import ListadoPedidos from './Componentes/Pedidos/ListadoPedidos';
 import Registrarse from './Paginas/Registrarse';
 
 function App() {
@@ -109,6 +110,7 @@ function App() {
         <Route path='/registrarse' element={<Registrarse />} />
         <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} />} />
         <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
+        <Route path="/pedidos" element={<ListadoPedidos />} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer />
