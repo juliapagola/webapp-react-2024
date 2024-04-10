@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Breadcrumb } from "react-bootstrap";
 import {
   Navbar,
@@ -8,8 +8,11 @@ import {
   Collapse,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import AutContext from "../../Paginas/AutContext";
 
 function OpcionesDesplegable() {
+  const contextAut = useContext(AutContext);
+
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(null);
@@ -33,9 +36,7 @@ function OpcionesDesplegable() {
           </Button>
           <Breadcrumb className="m-3">
             <Breadcrumb.Item href="/">Página principal</Breadcrumb.Item>
-            <Breadcrumb.Item href="/pedidos">
-              Mis pedidos
-            </Breadcrumb.Item>
+            {contextAut.login && <Breadcrumb.Item href="/pedidos">Mis pedidos</Breadcrumb.Item>}
           </Breadcrumb>
         </Container>
       </Navbar>
@@ -166,19 +167,20 @@ function OpcionesDesplegable() {
                 </li>
               </ul>
             </Collapse>
-            <li>
-              <Button
-                variant="transparent"
-                onMouseEnter={() => handleMouseEnter("Ver pedidos")}
-                onMouseLeave={handleMouseLeave}
-                href="/pedidos"
-                style={{
-                  backgroundColor:
-                    hoveredButton === "Ver pedidos" ? "gray" : "initial",
-                }}>
-                Ver pedidos
-              </Button>
-            </li>
+            {contextAut.login &&
+              <li>
+                <Button
+                  variant="transparent"
+                  onMouseEnter={() => handleMouseEnter("Ver pedidos")}
+                  onMouseLeave={handleMouseLeave}
+                  href="/pedidos"
+                  style={{
+                    backgroundColor:
+                      hoveredButton === "Ver pedidos" ? "gray" : "initial",
+                  }}>
+                  Ver pedidos
+                </Button>
+              </li>}
             <li>
               <Button
                 variant="transparent"

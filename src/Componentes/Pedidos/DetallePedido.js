@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import DireccionDeEntrega from "./DireccionDeEntrega";
+import AutContext from "../../Paginas/AutContext";
 
 function DetallePedido() {
+  const contextAut = useContext(AutContext);
   const location = useLocation();
   const pedido = location.state.pedido || null;
   const navigate = useNavigate();

@@ -14,10 +14,27 @@ import Registrarse from './Paginas/Registrarse';
 import Login from './Paginas/Login';
 import DetallePedido from './Componentes/Pedidos/DetallePedido';
 import AutContext from './Paginas/AutContext';
+import Logout from './Paginas/Logout';
+
 
 function App() {
   const [login, setLogin] = useState(false);
   const [userID, setUserID] = useState('');
+
+  const actualizarLogin = (login, userID) => {
+    setLogin(login);
+    setUserID(userID);
+    localStorage.setItem("login", login);
+    localStorage.setItem("userID", userID);
+  };
+
+  useEffect(() => {
+    const userIDGuardado = localStorage.getItem("userID");
+    if (localStorage.getItem("login") === "true") {
+      setLogin(true);
+      setUserID(userIDGuardado);
+    }
+  }, []);
 
   const [carrito, setCarrito] = useState(() => {
     const carritoGuardado = localStorage.getItem("carrito");
@@ -103,7 +120,7 @@ function App() {
 
   return (
     <div className="App">
-      <AutContext.Provider value={{ login, setLogin, userID, setUserID }}>
+      <AutContext.Provider value={{ login: login, userID: userID }}>
         <Header
           showMenuCarrito={showMenuCarrito}
           setShowMenuCarrito={setShowMenuCarrito}
@@ -113,8 +130,9 @@ function App() {
           <Route path='/' element={<ListadoProductos accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} comprobarCarrito={comprobarCarrito} />} />
           <Route path='/carrito' element={<Carrito accionCarrito={accionCarrito} vaciarCarrito={vaciarCarrito} carrito={carrito} />} />
           <Route path='/sobre-nosotros' element={<SobreNosotros />} />
-          <Route path='/registrarse' element={<Registrarse />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/registrarse' element={<Registrarse actualizarLogin={actualizarLogin} />} />
+          <Route path='/login' element={<Login actualizarLogin={actualizarLogin} />} />
+          <Route path='/logout' element={<Logout actualizarLogin={actualizarLogin} />} />
           <Route path='/direccion-de-entrega' element={<DireccionDeEntrega carrito={carrito} vaciarCarrito={vaciarCarrito} detalle={false} />} />
           <Route path='/detalle-producto' element={<DetalleProducto accionCarrito={accionCarrito} setShowMenuCarrito={setShowMenuCarrito} />} />
           <Route path="/pedidos" element={<ListadoPedidos />} />

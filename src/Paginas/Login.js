@@ -1,12 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Form, Button, Alert, Row, Container, Col } from 'react-bootstrap';
 import eyeClosed from '../Componentes/Imagenes/ojo-tachado.png';
 import eyeOpen from '../Componentes/Imagenes/ojo-abierto.png';
 import axios from 'axios';
 import { MD5 } from 'crypto-js';
 import AutContext from './AutContext';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
+    const navigate = useNavigate();
     const contextAut = useContext(AutContext);
     const [userID, setUserID] = useState('');
     const [password, setPassword] = useState('');
@@ -29,8 +31,7 @@ const Login = () => {
             const userData = response.data;
             if (userData && Object.keys(userData).length > 0) {
                 setSubmitted(true);
-                contextAut.setLogin(true);
-                contextAut.setUserID(userID);
+                props.actualizarLogin(true, userID);
             } else {
                 setError('Nombre de usuario o contraseña incorrectos.');
             }
@@ -46,6 +47,11 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
+    useEffect(() => {
+        if (contextAut.login && !submitted) {
+            navigate('/');
+        }
+    }, [contextAut.login, navigate, submitted]);
     return (
         <>
             {!submitted ? (
@@ -82,6 +88,7 @@ const Login = () => {
                     <Row className='justify-content-center'>
                         <Col className='text-center'>
                             <div className='mb-5'><h1>¡Inicio de sesión exitoso!</h1></div>
+                            <div className='mb-5'><h3>¡Bienvenido {contextAut.userID}!</h3></div>
                             <Button size='lg' variant='success' href="/">Volver a la página principal</Button>
                         </Col>
                     </Row>

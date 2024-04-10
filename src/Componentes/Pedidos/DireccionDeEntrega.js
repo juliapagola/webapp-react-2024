@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
 import ResumenCarrito from "../Productos/ResumenCarrito";
 import { useNavigate } from "react-router-dom";
+import AutContext from "../../Paginas/AutContext";
 
 function DireccionDeEntrega(props) {
+  const contextAut = useContext(AutContext);
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (props.carrito.length === 0 && !submitted) {
+    if (!contextAut.login || (props.carrito.length === 0 && !submitted)) {
       navigate("/");
     }
     if (props.detalle) {
@@ -65,7 +68,7 @@ function DireccionDeEntrega(props) {
         codigoPostal: codigoPostal,
         poblacion: poblacion,
         provincia: provincia,
-        userID: "props.userID",
+        userID: contextAut.userID,
       },
       carrito: {},
     };
@@ -95,9 +98,9 @@ function DireccionDeEntrega(props) {
   }
 
   const titulo = bloqueado ? "Detalles del pedido" : "Dirección de entrega";
-  const observacionesTexto = bloqueado ? "Observaciones para la agencia..." : "Escribe aquí tus observaciones para la agencia..." ;
-  const mostrarBoton = (bloqueado) =>{
-    if (bloqueado){
+  const observacionesTexto = bloqueado ? "Observaciones para la agencia..." : "Escribe aquí tus observaciones para la agencia...";
+  const mostrarBoton = (bloqueado) => {
+    if (bloqueado) {
       return "block";
     }
     return "none";
@@ -261,14 +264,14 @@ function DireccionDeEntrega(props) {
             </Col>
             <Col md={4}>
               <Container className="justify-content-center align-items-center">
-                  <ResumenCarrito
-                    carrito={props.carrito}
-                    vaciarCarrito={props.vaciarCarrito}
-                    mostrarBotones={"none"}
-                  />
-                  <Button style={{width:"100%", textAlign:"center", display: mostrarBoton(bloqueado)}} className="mt-3" size="lg" variant="success" href="/pedidos">
-                    Volver al listado de productos
-                  </Button>
+                <ResumenCarrito
+                  carrito={props.carrito}
+                  vaciarCarrito={props.vaciarCarrito}
+                  mostrarBotones={"none"}
+                />
+                <Button style={{ width: "100%", textAlign: "center", display: mostrarBoton(bloqueado) }} className="mt-3" size="lg" variant="success" href="/pedidos">
+                  Volver al listado de productos
+                </Button>
               </Container>
             </Col>
           </Row>

@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ResumenPedido(props) {
-  console.log(props.pedido);
-
   let total = 0;
   let numeroProductos = 0;
 
@@ -39,8 +37,8 @@ function ResumenPedido(props) {
     axios
       .delete(
         "https://webapp-react-2024-dsm-default-rtdb.europe-west1.firebasedatabase.app/pedidos/" +
-          props.pedido.id +
-          ".json"
+        props.pedido.id +
+        ".json"
       )
       .catch((error) => {
         alert("No se ha podido eliminar el pedido. " + error);

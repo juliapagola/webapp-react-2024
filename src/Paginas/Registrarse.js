@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Form, Button, Alert, Row, Container, Col } from 'react-bootstrap';
 import eyeClosed from '../Componentes/Imagenes/ojo-tachado.png';
 import eyeOpen from '../Componentes/Imagenes/ojo-abierto.png';
 import axios from 'axios';
 import { MD5 } from 'crypto-js';
+import AutContext from './AutContext';
+import { useNavigate } from 'react-router-dom';
 
-const Registrarse = () => {
+const Registrarse = (props) => {
+    const navigate = useNavigate();
+    const contextAut = useContext(AutContext);
     const [userID, setUserID] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -61,6 +65,7 @@ const Registrarse = () => {
         try {
             await axios.post('https://webapp-react-2024-dsm-default-rtdb.europe-west1.firebasedatabase.app/usuarios.json', usuario);
             setSubmitted(true);
+            props.actualizarLogin(true, userID);
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
             setError('Ha ocurrido un error al enviar el formulario.');
@@ -96,6 +101,12 @@ const Registrarse = () => {
     const toggleShowConfirmPassword = () => {
         setShowConfirmPassword(!showConfirmPassword);
     };
+
+    useEffect(() => {
+        if (contextAut.login && !submitted) {
+            navigate('/');
+        }
+    }, [contextAut.login, navigate, submitted]);
 
     return (
         <>
@@ -147,6 +158,7 @@ const Registrarse = () => {
                     <Row className='justify-content-center'>
                         <Col className='text-center'>
                             <div className='mb-5'><h1>¡Registrado con éxito!</h1></div>
+                            <div className='mb-5'><h3>¡Bienvenido {contextAut.userID}!</h3></div>
                             <Button size='lg' variant='success' href="/">Volver a la página principal</Button>
                         </Col>
                     </Row>
