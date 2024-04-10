@@ -1,22 +1,22 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import DireccionDeEntrega from "./DireccionDeEntrega";
-import AutContext from "../../Paginas/AutContext";
 
 function DetallePedido() {
-  const contextAut = useContext(AutContext);
   const location = useLocation();
-  const pedido = location.state.pedido || null;
   const navigate = useNavigate();
+  const pedido = location.state != null ? location.state.pedido : null;
   useEffect(() => {
     if (pedido == null || pedido.length === 0) {
       navigate("/pedidos");
     }
   });
-
+  if(pedido == null || pedido.length === 0) {
+    return null;
+  }
   const reestructurarCarrito = () => {
     let arrayProductos = [];
-    for (let key in pedido.carrito) {
+    for (let key in pedido?.carrito) {
       arrayProductos.push({
         id: key,
         nombre: pedido.carrito[key].nombre,
@@ -31,7 +31,7 @@ function DetallePedido() {
   return (
     <DireccionDeEntrega
       carrito={carrito}
-      cliente={pedido.cliente}
+      cliente={pedido?.cliente}
       detalle={true}
     />
   );
